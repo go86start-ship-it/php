@@ -23,7 +23,7 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
   <a href="https://www.google.com">Googleを開く</a>
 
 //テーブル
-      <table border="1">1は枠線の太さ
+      <table>
     <tr>・・行
       <th>名前</th>・・見出し
       <th>年齢</th>
@@ -70,3 +70,6 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
     <li><a href="/terms">利用規約</a></li>
   </ul>
 </nav>
+
+//ロゴの入れ方
+ 
