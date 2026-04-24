@@ -71,5 +71,7 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
   </ul>
 </nav>
 
-//ロゴの入れ方
- 
+//テキストタグ
+<input type="text">は1行で短い物、<textarea>は複数行の長いもの
+
+ ※htmlのタグは小文字

@@ -143,3 +143,72 @@ setter:フィールドの値を設定
 代表的なもの
 @Override	スーパークラスのメソッドを正しくオーバーライドしているかチェックする。
 @WebServlet("/Login")
+//request.setCharacterEncoding("UTF-8");
+doPostの時だけ必要:データは HTTPリクエストボディ に格納して送られる。サーバー側が読み取る際のデフォルトが ISO-8859-1（欧米圏用）が多い
+ためrequest.setCharacterEncoding("UTF-8")
+
+doGetはなぜ不要：データは URL（クエリパラメータ） の一部として送られる。
+多くのサーブレットコンテナ（Tomcat 8.0以降など）では、URLのデコードは最初から UTF-8 で行うよう設定されている。
+
+//キャスト(同じ型同士)
+基本データ型のキャスト
+基本データ型種類：int,double,boolean,３つは重要
+				 long,float,double,char,short
+
+参照型：string,
+
+//ラッパークラス（違う型同士)
+
+
+
+
+
+
+
+
+getConnection:データベース接続
+prepareStatement:sql文をデータベースへ送る
+プレスホルダー：正式な値が入るまでの仮置き場
+Javaではリストなどの変数名は小文字から始めるのが一般的です
+※セッション
+session.invalidate()：現在実行中のセッションを無効化（破棄）する
+request.getSession();新しいセッションを作成
+例文
+if (result) {
+    // 1. 古いセッションを破棄
+    session.invalidate();
+    
+    // 2. 新しいセッションを作成（trueを指定）
+    session = request.getSession(true);
+    
+    // 3. 改めてデータをセット
+    getServletContext().setAttribute(userId, session.getId());
+    session.setAttribute("MR", MR);
+    nextPage = "/menu.jsp";
+}
+フォワード vs リダイレクト: *
+フォワード (forward): 削除エラーなどで「現在のリクエスト（エラーメッセージ等）を引き継いで画面を戻したい」時に使います。
+// 移動先を決める
+RequestDispatcher rd = request.getRequestDispatcher("/example.jsp");
+// 荷物（データ）を持たせて、出発！
+rd.forward(request, response);
+💡 覚え方
+RequestDispatcher: 「案内役」を呼ぶ。
+forward: 「案内してもらう（自分は動かない）」。
+
+リダイレクト (sendRedirect): 処理が完了し、全く別のページ（ログイン画面など）へ移動させたい時に使います。
+// ブラウザに「あっち（login.jsp）へ行って！」と命令するだけ
+response.sendRedirect("login.jsp");
+💡 覚え方
+sendRedirect: 「指差し案内」。
+
+これ一行で、ブラウザが勝手に新しいページへ移動してくれます。
+
+※CSVについて
+セッションのクリーンアップ: CSV出力が終わった後、そのデータがもう不要であれば 
+session.removeAttribute("CSVdata") を行うことで、サーバーのメモリ負荷を下げることができます。
+
+※3大例外エラー一覧
+NullPointerException：「中身が空っぽ（null）の変数に対して、何か命令をさせようとした」時に発生します。
+ClassNotFoundException：プログラムが動こうとした時に、必要なクラス（ファイル）が見つからない」時に発生します。
+SQLException：プログラムが動こうとした時に、必要なクラス（ファイル）が見つからない」**時に発生します。
