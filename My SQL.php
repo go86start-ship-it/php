@@ -1,4 +1,4 @@
-//My SQL実行の仕方
+１My SQL実行の仕方-------------------------------------
 ;を打つとソース終了
 <XAMPPの場合起動の仕方>
 XAMPP Control panelを開き
@@ -17,16 +17,12 @@ passは打たない
 
 <文字化け>
 set names cp932;
-
-
 データを入れる(ctrl+A ctrl+V)
 
+注意：cd コマンドでアドレスの後に;を入れると、コンピュータが「 ; という名前のフォルダ」を探しに行ってしまい、エラーになります。
 
 
-
-
-
-
+２頭文字------------------------------------------------------------------------
 //データベース標準言語
 //データ定義言語（DDL）
     CREATE(作成)、ALTER(変更)、DROP(削除)
@@ -53,5 +49,78 @@ DROP DATABASE データベース名;
 //データベース一覧
 SHOW DATABASES;
 
+//4大命令固有の部分
+SELECT 列名 FROM  テーブル名
+UPDATE テーブル名   SET 列名=値
+DELETE FROM テーブル名
+INSERT テーブル名(列名・・・)VALUES(値・・)
 
-cd コマンドでアドレスの後に;を入れると、コンピュータが「 ; という名前のフォルダ」を探しに行ってしまい、エラーになります。
+３　文法---------------------------------------------------------------------------------------------------
+３-１SELECT系
+AS+任意の名前で別名を定義できる
+例文 SELECT 費目 AS ITEM,入金額 AS RECEIVE
+
+//ON（結合条件）: 「reservation側のroomid」と「room側のid」が一致する行同士をガッチャンコしなさい、という指示です。
+SELECT reservation.date, room.name FROM reservation JOIN room ON reservation.roomid = room.id;
+
+３-２UPDATE系
+
+３-３INSERT系
+
+３-４DROP系
+DROP DATABASE IF EXISTS meetingroomB;もし既に meetingroomB という名前の箱（データベース）があったら、中身ごと一旦削除します。
+//エラーを防ぐため、これから作るテーブルが既に存在していたら削除
+DROP TABLE IF EXISTS user;
+３-５CREATE系
+//構文解説
+CREATE USER IF NOT EXISTS 'user1'@'localhost' IDENTIFIED BY 'pass';
+CREATE USER：新しいユーザーを作成
+IF NOT EXISTS:「もし存在しなければ」。役割は、ユーザーが同じ名前のユーザー作成を防ぐ。
+'user'@'localhost'：userはアカウント名。'@'localhost'は接続元（ホスト）の制限です。＠は「ユーザー名」と「接続元ホスト」を切り分けるための区切り文字。
+IDENTIFIED BY 'pass'：パスワードはpassである。
+
+
+３-６GRANT
+データベースを操作するための「鍵（ユーザー）」を作り、その鍵で何ができるかを設定しています。
+//構文解説
+GRANT SELECT, UPDATE, INSERT, DELETE ON meetingroomB.* TO
+作成した user に対して、meetingroomB データベース内のすべてのテーブルに対して「取得・更新・挿入・削除」の4つの権限を与えます。
+on:どのデータベースに対して権限を与えるか
+
+
+３-６その他
+id VARCHAR(7) PRIMARY KEY,: 最大7文字のID。重複を許さない主キーです。
+password VARCHAR(10) NOT NULL,: 最大10文字のパスワード。必須項目です。
+name VARCHAR(10),: 最大10文字の名前。
+address VARCHAR(30),: 最大30文字の住所。
+is_admin：「管理者ですか？」という質問形式の名前です。役割: is_ や has_ で始まる名前は、プログラミングの世界で「はい(Yes)か、いいえ(No)か」を判定するフラグによく使われます。
+
+NOT NULL （制約）意味: 「空っぽ（NULL）であってはならない」というルールです。
+DEFAULT FALSE （初期値）：何もしていしなければfalseS
+REFERENCES:リファレンスは、日本語で「参照する」という意味です。
+データベースの世界では、「別のテーブルにあるデータと紐付ける（リンクさせる）」**ための重要なルール。
+専門用語で**「外部キー制約」**と呼びます。
+REFERENCESがあることで例えば部屋だと
+・追加のとき: room テーブルに存在しない ID で予約を入れようとすると、「そんな部屋はありません！」とエラーを出して止めてくれます。
+・削除のとき: まだ予約が入っている部屋を room テーブルから消そうとすると、「予約が残っているので消せません！」と守ってくれます。
+
+//DEFAULT CURRENT_TIMESTAMP
+SQL実行時の現在時刻を取得し、自動で挿入する設定
+//roomテーブルに、IDが 'C01'、名前が '集中スペース'」**というデータを新しく入れたいとき、valuesは値を入れる
+INSERT INTO room (id, name) VALUES ('C01', '集中スペース');
+//2つのテーブルを合体させる「JOIn」
+FROM reservation
+JOIN room ON reservation.roomid = room.id;
+ON ... = ...: どの項目を「目印」にしてくっつけるかを指定します（ここでは共通の部屋ID）。
+
+//データの並び替え (ORDER BY)
+SELECT * FROM reservation ORDER BY date DESC;
+ASC: 昇順（小さい順、古い順）
+DESC: 降順（大きい順、新しい順）
+
+//あいまい検索 (LIKE)
+-- 名前に「田中」が含まれる人を検索
+SELECT * FROM user WHERE name LIKE '%田中%';
+
+※「並び替え（ORDER BY）」は、すべての計算や抽出が終わった「最後」に行う仕上げ作業だと覚えると間違いにくくなります！
+LIMIT 5 は「5件だけ表示する」という便利な命令です。

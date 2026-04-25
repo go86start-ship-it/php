@@ -51,3 +51,32 @@ session_destroy();
         SESSION["login"]=true;
 
     }
+※１データベース接続
+PHPでSQLを動かす3つのステップ
+1接続（コネクション）: データベースの扉を開ける。
+
+2実行（クエリ）: SQL文を送り、結果を受け取る。
+
+3表示（フェッチ）: 受け取ったデータを画面に出す。
+<?php
+// 1. 接続設定（データベースの住所や合言葉）
+//mysql:データベースの「住所（ホスト）」、abname:箱の名前（データベース名）」、文字化けを防ぐための「文字コード（utf8）」
+$dsn      = 'mysql:host=localhost;dbname=meetingroomB;charset=utf8';
+//SQLの最初で作った「鍵」の情報です。
+$user     = 'user';
+//扉を開けるためのユーザー名と暗証番号です。
+$password = 'pass';
+
+//prepare
+ログイン機能のように「ユーザーが入力したIDやパスワード」をSQLに組み込む場合は、必ず prepare を使う必要があります。SQLインジェクション対策。
+
+// 1. 命令の形だけ先に送る（値が入る場所は「?」にしておく）
+$sql = "SELECT * FROM user WHERE id = ?";
+$stmt = $pdo->prepare($sql);
+
+// 2. 「?」に入る具体的なデータを後から入れる
+$user_id = 'U001'; // 本来はフォームから飛んできた値
+$stmt->execute([$user_id]);
+
+// 3. 結果を取り出す
+$user_data = $stmt->fetch(PDO::FETCH_ASSOC);
