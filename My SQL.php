@@ -49,6 +49,7 @@ DROP DATABASE データベース名;
 //データベース一覧
 SHOW DATABASES;
 
+
 //4大命令固有の部分
 SELECT 列名 FROM  テーブル名
 UPDATE テーブル名   SET 列名=値
@@ -59,9 +60,13 @@ INSERT テーブル名(列名・・・)VALUES(値・・)
 ３-１SELECT系
 AS+任意の名前で別名を定義できる
 例文 SELECT 費目 AS ITEM,入金額 AS RECEIVE
+//複数の列を検索 ,で区切る
+　select name,id from books
 
 //ON（結合条件）: 「reservation側のroomid」と「room側のid」が一致する行同士をガッチャンコしなさい、という指示です。
 SELECT reservation.date, room.name FROM reservation JOIN room ON reservation.roomid = room.id;
+//数をカウントする
+SELECT COUNT(*) FROM Products;
 
 ３-２UPDATE系
 
@@ -97,7 +102,7 @@ CREATE TABLE reservations (
 );
 
 
-３-６GRANT
+３-７GRANT
 データベースを操作するための「鍵（ユーザー）」を作り、その鍵で何ができるかを設定しています。
 //構文解説
 GRANT SELECT, UPDATE, INSERT, DELETE ON meetingroomB.* TO
@@ -135,9 +140,11 @@ SELECT * FROM reservation ORDER BY date DESC;
 ASC: 昇順（小さい順、古い順）
 DESC: 降順（大きい順、新しい順）
 
-//あいまい検索 (LIKE)
+//LIKE演算子によるパターンマッチング
 -- 名前に「田中」が含まれる人を検索
 SELECT * FROM user WHERE name LIKE '%田中%';
+%:任意の０文字以上の文字列
+_:任意の１文字
 
 ※「並び替え（ORDER BY）」は、すべての計算や抽出が終わった「最後」に行う仕上げ作業だと覚えると間違いにくくなります！
 LIMIT 5 は「5件だけ表示する」という便利な命令です。
@@ -149,3 +156,10 @@ LIMIT 5 は「5件だけ表示する」という便利な命令です。
         FOREIGN KEY(roomid) REFERENCES room(id),
         FOREIGN KEY(userid) REFERENCES user(id),
         UNIQUE(roomid, date, start)
+
+４　数値
+//在庫数が10個未満の列をすべて抜き出せ
+select * from Items where stock_count <10
+
+５メソッド一覧
+DISTINCT:重複除去
