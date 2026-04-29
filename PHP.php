@@ -126,3 +126,12 @@ date("Y-m-d H:i:s")
 使える物：date,month,week,time,datetime-local,number,range
 
 //PDO:PHP Data Objects (PDO) 拡張モジュール
+
+//日時に関する型３種類
+・DATE
+    形式：YYYY-MM-DD　西暦・月・日
+・DATETIME
+　　形式：YYYY-MM-DD HH:MM:SS　　西暦・月・日・何時何分何秒
+TIMESTAMP
+    形式：YYYY-MM-DD HH:MM:SS　　西暦・月・日・何時何分何秒
+    特徴：自動で時間を書き込む

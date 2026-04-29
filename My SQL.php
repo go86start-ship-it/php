@@ -153,6 +153,7 @@ LIMIT 5 は「5件だけ表示する」という便利な命令です。
 日付と時間を両方保持でき、予約管理に最も適している。
 
 //「部屋ID」は必ず room テーブルに存在するものでなければならない、という親子関係のルール（外部キー）です。
+//FOREIGN KEY (親ID) REFERENCES 親テーブル(親ID)・・・参照先は「主キー」であること
         FOREIGN KEY(roomid) REFERENCES room(id),
         FOREIGN KEY(userid) REFERENCES user(id),
         UNIQUE(roomid, date, start)
@@ -163,3 +164,39 @@ select * from Items where stock_count <10
 
 ５メソッド一覧
 DISTINCT:重複除去
+
+６例文
+//データベースを操作するための「鍵」を作り、その鍵で何ができるかを設定。
+CREATE USER IF NOT EXISTS 'user'@'localhost' IDENTIFIED BY 'pass';
+
+CREATE table users(
+    //カラム名をつけるとき、他のテーブルと明確に分けるためアンダーバーで区切って名前をつける
+    user_id  VARCHAR(7) PRIMARY KEY,
+    user_name VARCHAR(10)NOT NULL,
+    user_email VARCHAR(10),
+    user_password VARCHAR(255)
+);
+
+CREATE table rooms(
+    room_id VARCHAR(7),
+    room_name VARCHAR(7),
+    room_capacity VARCHAR(10),
+    room_description VARCHAR(100)
+);
+
+CREATE table reservations(
+    reservation_user_id VARCHAR(7),
+    reservation_room_id VARCHAR(7),
+    reservation_start_time datetime DEFAULT CURRENT_TIMESTAMP,
+    reservation_end_time datetime DEFAULT CURRENT_TIMESTAMP,
+    //「部屋ID」は必ず room テーブルに存在するものでなければならない、という親子関係のルール（外部キー）です。
+    　   FOREIGN KEY(このテーブルのカラム名) REFERENCES users(紐づけるテーブルのカラム名),
+        FOREIGN KEY(reservation_user_id) REFERENCES users(user_id),
+        FOREIGN KEY(reservation_room_id) REFERENCES rooms(room_id),
+        UNIQUE(room_id, date, start),
+
+        UNIQUE(room_id,start_time)
+);
+
+
+
