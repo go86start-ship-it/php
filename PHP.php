@@ -135,3 +135,6 @@ date("Y-m-d H:i:s")
 TIMESTAMP
     形式：YYYY-MM-DD HH:MM:SS　　西暦・月・日・何時何分何秒
     特徴：自動で時間を書き込む
+//データを受け取る
+$_POST['name属性の名前']
+$_GET['name属性の名前']
