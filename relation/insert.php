@@ -10,7 +10,7 @@ try {
     //PDOインスタンス生成
     $PDO = new PDO($dsh, $user, $pass);
     // プレースホルダ（?）を使ったSQL
-    $sql = "INSERT INTO customers (customer_id,)
+    $sql = "INSERT INTO customers (customer_id,customer_name,customer_email,customer_phone,customer_address)
 
     $stmt = $dph->prepare($sql);
 } catch (PDOException) {

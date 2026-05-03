@@ -23,18 +23,7 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
 //リンクを挿入
   <a href="https://www.google.com">Googleを開く</a>
 
-//テーブル 
-　概要：<table>を元に、<tr>行、<th>見出し、<td>セル
-  例文
-  <table>
-    <tr>・・行
-      <th>名前</th>・・見出し
-      <th>年齢</th>
-    </tr>
-    <tr>
-      <td>田中</td>・・・セル
-      <td>27</td>
-    </tr>
+
 
 //ラベルタグ
 ラジオボタンやチェックボックスなど入力項目があるもので<label>タグでかこう
@@ -105,3 +94,19 @@ input	type	text	一行テキストボックス
       value	任意（全角）	入力内容を全角で送る
       placeholder	任意（全角）	テキストボックス内に文字を表示
 label	for	任意(半角英数)	inputと結び付ける
+
+４　テーブル
+//テーブル 
+　概要：<table>を元に、<tr>行、<th>見出し、<td>セル
+  例文
+  <table>
+    <tr>・・行
+      <th>名前</th>・・見出し
+      <th>年齢</th>
+    </tr>
+    <tr>
+      <td>田中</td>・・・セル
+      <td>27</td>
+    </tr>
+
+    <thead> は HTMLの表（table）でヘッダー部分をまとめるタグ です。

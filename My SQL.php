@@ -71,7 +71,8 @@ SELECT COUNT(*) FROM Products;
 ３-２UPDATE系
 
 ３-３INSERT系
-
+//productsという名前のテーブルに（列名,列名）のデータを挿入します。
+INSERT INTO products (product_code, name, category, price, stock)
 ３-４DROP系
 DROP DATABASE IF EXISTS meetingroomB;もし既に meetingroomB という名前の箱（データベース）があったら、中身ごと一旦削除します。
 //エラーを防ぐため、これから作るテーブルが既に存在していたら削除

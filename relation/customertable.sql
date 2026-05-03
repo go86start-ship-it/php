@@ -14,11 +14,7 @@ CREATE table stocks(
     stock_price int,
     stock_stock int(255)
 );
-//営業のデータ
-CREATE table sales(
-    sale_id int PRIMARY KEY  AUTO_INCREMENT,
-    sale_name varchar(100) NOT NULL
-);
+
 
 //出荷履歴のデータ
 CREATE table  shipping(
