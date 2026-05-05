@@ -26,12 +26,13 @@
               <th>ステータス</th> 
             </tr>
             <tr>
-                <td><?= $Inventory['stock_id'] ?></td>
-                <td><?= $Inventory['stock_name'] ?></td>
-                <td><?= $Inventory['stock_category'] ?></td>
-                <td><?= $Inventory['stock_count'] ?></td>
-                <td><?= $Inventory['stock_low'] ?></td>
-                <td><?= $Inventory['stock_statute'] ?></td>
+            <?php foreach ($Inventorys as $Inventory): ?>
+                <td><?=htmlspecialchars($Inventory['stock_id'])?></td>
+                <td><?=htmlspecialchars($Inventory['stock_name'])?></td>
+                <td><?=htmlspecialchars($Inventory['stock_category'])?></td>
+                <td><?=htmlspecialchars($Inventory['stock_count'])?></td>
+                <td><?=htmlspecialchars($Inventory['stock_low'])?></td>
+                <td><?=htmlspecialchars($Inventory['stock_statute'])?></td>
             </tr>
         </thead>
 

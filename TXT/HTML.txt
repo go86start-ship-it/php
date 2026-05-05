@@ -23,18 +23,7 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
 //リンクを挿入
   <a href="https://www.google.com">Googleを開く</a>
 
-//テーブル 
-　概要：<table>を元に、<tr>行、<th>見出し、<td>セル
-  例文
-  <table>
-    <tr>・・行
-      <th>名前</th>・・見出し
-      <th>年齢</th>
-    </tr>
-    <tr>
-      <td>田中</td>・・・セル
-      <td>27</td>
-    </tr>
+
 
 //ラベルタグ
 ラジオボタンやチェックボックスなど入力項目があるもので<label>タグでかこう
@@ -78,3 +67,46 @@ formタグで囲むことで、中にある送信ボタン（type="submit"）が
 <input type="text">は1行で短い物、<textarea>は複数行の長いもの
 
  ※htmlのタグは小文字
+ ４属性一覧-------------------------------------
+ https://csshtml.work/attributes-values/
+ htmlタグ	属性	値	解説
+すべて	id	任意(半角英数)	CSSを指定するための名前
+       class	任意(半角英数)	CSSを指定するための名前
+       style	CSS	CSSを直接指定
+
+a	     href	リンク先のURL	リンク先の指定
+       target	_blank	別タブで開く
+
+img	    src画像ファイルのURL	画像を表示させる
+        alt	任意（全角）	画像の説明
+        width	  半角数字	画像の幅
+        height	半角数字	画像の高さ
+
+table	  border	1	線があることを示す
+td,th	  colspan	半角数字	横結合
+        rowspan	半角数字	縦結合
+
+input	type	text	一行テキストボックス
+            radio	一つだけ選択できる選択肢
+            checkbox	複数選択できる選択肢
+            submit	送信ボタン
+      name	任意(半角英数)	項目グループに名前をつける
+      value	任意（全角）	入力内容を全角で送る
+      placeholder	任意（全角）	テキストボックス内に文字を表示
+label	for	任意(半角英数)	inputと結び付ける
+
+４　テーブル
+//テーブル 
+　概要：<table>を元に、<tr>行、<th>見出し、<td>セル
+  例文
+  <table>
+    <tr>・・行
+      <th>名前</th>・・見出し
+      <th>年齢</th>
+    </tr>
+    <tr>
+      <td>田中</td>・・・セル
+      <td>27</td>
+    </tr>
+
+    <thead> は HTMLの表（table）でヘッダー部分をまとめるタグ です。

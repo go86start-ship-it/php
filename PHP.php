@@ -21,8 +21,8 @@ $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 例文
 <?php
 $dsn  = "mysql:host=localhost;dbname=mysqlstudy;charset=utf8";
-$user = 'user'; // クォーテーションを追加
-$pass = 'pass'; // クォーテーションを追加
+$user = "root"; // XAMPPのデフォルトは root
+$pass = "";     // XAMPPのデフォルトは 空白
 
 try {
     //インスタンス生成
@@ -37,7 +37,10 @@ try {
     // 3. 実行（execute） 検索するIDは１番という意味。？のほうがプロ向き
     $target_id = 1;
     //$stmt を使って、? のところに $target_id を入れて実行してね！」という命令です。
-    $stmt->execute(target_id); 
+    execute の引数は「配列」にする
+    今回select文で? を使った場合は、値を []（角括弧）で囲むルールです。
+
+    $stmt->execute([$target_id]); 
 
     // 4. 結果の取得　//PDO:PHP Data Objects (PDO) 拡張モジュール ASSOC(連想配列)
     $room = $stmt->fetch(PDO::FETCH_ASSOC);

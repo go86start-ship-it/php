@@ -2,18 +2,19 @@
 ;を打つとソース終了
 <XAMPPの場合起動の仕方>
 XAMPP Control panelを開き
+<コマンドプロンプトへログイン>
+<カレントディレクトをbinへ>
+cd "C:\xampp\mysql\bin"
 
-MySQL　スタート　
-
-コマンドプロンプトで開く
-
-cd C:\Users\user\xampp\mysql\bin
-
-MYSQl -uroot -p
+mysql -u root -p
 passは打たない
-
+<データベースを紐づける>
 <データべ-ス名>
-例　use meetingroomb
+CREATE DATABASE relation;
+USE relation;
+SOURCE C:/xampp/htdocs/php/practice/アズウェル/relation.sql;
+SHOW TABLES;
+例　use relation;
 
 <文字化け>
 set names cp932;
@@ -72,6 +73,7 @@ SELECT COUNT(*) FROM Products;
 
 ３-３INSERT系
 //productsという名前のテーブルに（列名,列名）のデータを挿入します。
+INSERT INTO テーブル名(列1, 列2...) VALUES (値1, 値2...) という形式で書きます。
 INSERT INTO products (product_code, name, category, price, stock)
 ３-４DROP系
 DROP DATABASE IF EXISTS meetingroomB;もし既に meetingroomB という名前の箱（データベース）があったら、中身ごと一旦削除します。

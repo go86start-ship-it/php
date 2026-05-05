@@ -1,6 +1,6 @@
-//保育園のデータ
-CREATE table customers(
-    customer_id int PRIMARY KEY  AUTO_INCREMENT,
+-- 保育園のデータ
+CREATE TABLE customers(
+    customer_id int PRIMARY KEY AUTO_INCREMENT,
     customer_name varchar(100) NOT NULL,
     customer_email varchar(255),
     customer_phone varchar(100),
@@ -10,53 +10,26 @@ CREATE table customers(
     customer_adress_build varchar(200)
 );
 
-//在庫のデータ
-CREATE table stocks(
-    stock_id  int PRIMARY KEY  AUTO_INCREMENT,  --商品コード
-    stock_name varchar(100) NOT NULL,         --商品名
-    stock_category varchar(20) NOT NULL,               --カテゴリー
-    stock_count int DEFAULT 0 NOT NULL,                --在庫数
-    stock_low  int NOT NULL,                         --最低在庫数
-    stock_statute  varchar(30) NOT NULL               --ステータス
+-- 在庫のデータ
+CREATE TABLE stocks(
+    stock_id varchar(30) PRIMARY KEY,
+    stock_name varchar(100) NOT NULL,
+    stock_category varchar(20) NOT NULL,
+    stock_count int DEFAULT 0 NOT NULL,
+    stock_low int NOT NULL,
+    stock_statute varchar(30) NOT NULL
 );
 
-
-//出荷履歴のデータ
-CREATE table  shippings(
-    shipping_id int PRIMARY KEY  AUTO_INCREMENT,
-    stock_id int NOT NULL,
+-- 出荷履歴のデータ
+CREATE TABLE shippings(
+    shipping_id int PRIMARY KEY AUTO_INCREMENT,
+    stock_id varchar(30) NOT NULL, -- ここを int から varchar(30) に修正！
     customer_id int NOT NULL,
     shipping_count int NOT NULL DEFAULT 0,
     shipping_date DATE NOT NULL,
-    --  CONSTRAINTで参照整合性を保持する
     CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
     CONSTRAINT fk_stock FOREIGN KEY (stock_id) REFERENCES stocks(stock_id)
 );
 
-//サンプルデータの挿入
-INSERT INTO stocks(stock_id,stock_name,)
-
-
-//--------------------------------------------------------
-//DBML形式
-//保育園のデータ
-table customers{
-    customer_id int [PRIMARY KEY]
-    customer_name varchar
-    customer_email varchar
-    customer_phone varchar
-    customer_address varchar
-    created_at DATETIME
-}
-//商品のデータ
-table items{
-    items_id  int
-    items_name varchar
-    items_price DECIMAL
-    items_stock int
-}
-//営業のデータ
-table sales{
-    sale_id int
-    sale_name varchar
-}
+//在庫の挿入
+INSERT INTO stocks(stock_id,stock_name,stock_category,stock_count,stock_low,stock_statute) VALUES("Z1","おりりふきS","おしりふき",0,0,"在庫不足");
