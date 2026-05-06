@@ -10,11 +10,17 @@ mysql -u root -p
 passは打たない
 <データベースを紐づける>
 <データべ-ス名>
+//初回のみ
 CREATE DATABASE relation;
+
 USE relation;
-SOURCE C:/xampp/htdocs/php/practice/アズウェル/relation.sql;
+//初回のみ
+SOURCE C:/xampp/htdocs/php/practice/aswell/relation.sql;
 SHOW TABLES;
 例　use relation;
+
+<テーブルがあるか確認>
+SHOW DATABASES;
 
 <文字化け>
 set names cp932;

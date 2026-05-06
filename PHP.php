@@ -43,6 +43,8 @@ try {
     $stmt->execute([$target_id]); 
 
     // 4. 結果の取得　//PDO:PHP Data Objects (PDO) 拡張モジュール ASSOC(連想配列)
+    fetch:1件だけ　-
+    fetchAll:全件
     $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($room) {
@@ -148,9 +150,13 @@ TIMESTAMP
 //include
 include 'inventory_view.php'; 
 「今ここで使っている変数（$items など）を持ったまま、inventory_view.php の中身をここにコピーして合体させて実行して！」
-表示用のHTML(相手方のファイル)を読み込みます
+//PHPファイルで書いた物 HTML側で $Inventorys を使えるように読み込む
 include 'inventory_view.php';
+//Null合体演算子（Null Coalescing Operator） 
+??:もし中身が空っぽ（NULL）だったら、こっちの値を代わりに使ってね」 というショートカット命令です。
+
 ６ HTMLとデータをやり取りする
 //データを受け取る
 $_POST['name属性の名前']
 $_GET['name属性の名前']
+

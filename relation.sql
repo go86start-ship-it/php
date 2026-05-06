@@ -31,5 +31,13 @@ CREATE TABLE shippings(
     CONSTRAINT fk_stock FOREIGN KEY (stock_id) REFERENCES stocks(stock_id)
 );
 
+---ユーザー
+CREATE TABLE users(
+    user_id varchar(255) PRIMARY KEY ,
+    user_password varchar(255 )
+);
+
 //在庫の挿入
 INSERT INTO stocks(stock_id,stock_name,stock_category,stock_count,stock_low,stock_statute) VALUES("Z1","おりりふきS","おしりふき",0,0,"在庫不足");
+//ユーザー挿入
+INSERT INTO users (user_id, user_password) VALUES ('test_user', 'password123');
