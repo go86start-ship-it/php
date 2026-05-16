@@ -81,6 +81,22 @@ SELECT COUNT(*) FROM Products;
 //productsという名前のテーブルに（列名,列名）のデータを挿入します。
 INSERT INTO テーブル名(列1, 列2...) VALUES (値1, 値2...) という形式で書きます。
 INSERT INTO products (product_code, name, category, price, stock)
+//例文　intなど型はいらない
+//出荷予定/履歴 追加
+INSERT INTO shippings (
+    stock_id, 
+    customer_id, 
+    shipping_count, 
+    shippings_scheduled_date, 
+    shipping_status  -- 0:予定として登録
+
+) VALUES (
+    ?, -- 画面で選んだ在庫NO
+    ?, -- 画面で選んだ保育園ID
+    ?, -- 画面で入力した個数
+    ?, -- 画面で選んだ出荷日付
+    0, --　出荷予定としてデフォルト登録
+);
 ３-４DROP系
 DROP DATABASE IF EXISTS meetingroomB;もし既に meetingroomB という名前の箱（データベース）があったら、中身ごと一旦削除します。
 //エラーを防ぐため、これから作るテーブルが既に存在していたら削除
