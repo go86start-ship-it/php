@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('user_login_id',100);
+            $table->string('user_name',150);
+            $table->string('password');//必須 固定
+            $table->string('email')->unique();//固定
+            $table->timestamp('email_verified_at')->nullable();//必須　固定
+            $table->rememberToken();//必須　固定
+            $table->timestamps();//必須　固定
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
