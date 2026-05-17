@@ -8,7 +8,6 @@ pwd
 <カレントディレクト移動>
 cd ../../
 <リポジトリに移動>
-cd "パス名"
 cd  "C:\xampp\htdocs\php\practice"
 
 <リポジトリロード>

@@ -48,11 +48,14 @@ $table->timestamps(); を残すべきなの？
 created_at （データが登録された日時）
 
 updated_at （データが変更された日時）
+外部キー
+$table->foreignId("category_id")->constrained()->onDelete('cascade');
 
+->constrained():意味: 「このカラムは、他のテーブルのIDと紐づいていますよ」という外部キー制約をデータベースに設定します。
+->onDelete('cascade')
+意味: 連動削除（カスケード削除）を設定します。
 
-
-
-
+挙動: 親である categories テーブルのデータ（例: 「家電」カテゴリ）が削除されたとき、そのカテゴリに紐づいていた products テーブルの商品データも一緒に自動で削除してくれます。
 
 
 
